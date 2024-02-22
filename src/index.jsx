@@ -1,4 +1,4 @@
-import React from 'react';
+
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HostLayout from "./components/HostLayout";
@@ -9,6 +9,11 @@ import Home from "./pages/Home";
 import HostDashboard from "./pages/host/HostDashboard";
 import HostIncome from "./pages/host/HostIncome";
 import HostReviews from "./pages/host/HostReviews";
+import HostVanDetail from "./pages/host/HostVanDetail";
+import HostVanInfo from "./pages/host/HostVanInfo";
+import HostVanPhotos from "./pages/host/HostVanPhotos";
+import HostVanPricing from "./pages/host/HostVanPricing";
+import HostVans from "./pages/host/HostVans";
 import VanDetail from "./pages/vans/VanDetail";
 import Vans from "./pages/vans/Vans";
 import "./server";
@@ -26,8 +31,14 @@ function App() {
 
                     <Route path="/host" element={<HostLayout />}>
                         <Route index element={<HostDashboard />} />
-                        <Route path="/host/income" element={<HostIncome />} />
-                        <Route path="/host/reviews" element={<HostReviews />} />
+                        <Route path="income" element={<HostIncome />} />
+                        <Route path="reviews" element={<HostReviews />} />
+                        <Route path="vans" element={<HostVans />} />
+                        <Route path="vans/:id" element={<HostVanDetail />} >
+                            <Route index element={<HostVanInfo />} />
+                            <Route path="pricing" element={<HostVanPricing />} />
+                            <Route path="photos" element={<HostVanPhotos />} />
+                        </Route>
                     </Route>
                 </Route>
             </Routes>
