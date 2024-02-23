@@ -1,10 +1,17 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 export default function Footer() {
+    const isLoggedIn = localStorage.getItem("loggedin");
+    const location = useLocation();
 
-
-    const authenticated = false;
-    if (!authenticated) {
-        return <Navigate to="/login" state={{ message: "You must log in first" }} />;
+    if (!isLoggedIn) {
+        return <Navigate
+            to="/login"
+            state={{
+                message: "You must log in first",
+                from: location.pathname
+            }}
+            replace
+        />;
     }
     return (
         <Outlet />
