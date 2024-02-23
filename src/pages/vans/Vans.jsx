@@ -1,23 +1,21 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import getVans from "../../api";
 export default function Vans() {
     const [vans, setVans] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
     const [searchParams, setSearchParams] = useSearchParams();
     const typeFilter = searchParams.get("type");
 
 
     React.useEffect(() => {
-        fetch("/api/vans")
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('data', data);
-                if (Array.isArray(data.vans)) {
-                    setVans(data.vans);
-                } else {
-                    console.error("Data received from API is not an array:", data);
-                }
-
-            });
+        async function loadVans() {
+            setLoading(true);
+            const data = await getVans();
+            setVans(data);
+            setLoading(false);
+        }
+        loadVans();
     }, []);
     console.log('vans', vans);
     const vansToDisplay = typeFilter ? vans.filter(van => van.type === typeFilter) : vans;
@@ -43,6 +41,9 @@ export default function Vans() {
             }
             return prevParams;
         });
+    }
+    if (loading) {
+        return <h1>Loading...</h1>;
     }
     return (
         <div className="van-list-container">

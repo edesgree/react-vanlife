@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 import './index.css';
 import About from "./pages/About";
 import Home from "./pages/Home";
+import NotFound from './pages/NotFound';
 import HostDashboard from "./pages/host/HostDashboard";
 import HostIncome from "./pages/host/HostIncome";
 import HostReviews from "./pages/host/HostReviews";
@@ -40,6 +41,7 @@ function App() {
                             <Route path="photos" element={<HostVanPhotos />} />
                         </Route>
                     </Route>
+                    <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>
         </BrowserRouter>
