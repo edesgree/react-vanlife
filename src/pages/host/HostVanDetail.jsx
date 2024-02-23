@@ -4,8 +4,8 @@ const fetchHostVan = async function (id) {
     try {
         const response = await fetch(`/api/host/vans/${id}`);
         const data = await response.json();
-        console.log('data detail', data.vans[0]);
-        return data.vans[0] || {};
+        console.log('data detail', data.vans);
+        return data.vans || {};
     } catch (err) {
         console.log(err);
         return { name: 'Van not found' };

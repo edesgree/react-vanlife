@@ -6,7 +6,7 @@ export default function HostVans() {
         fetch("/api/host/vans")
             .then(res => res.json())
             .then(data => {
-                console.log(data.vans);
+                console.log('data.vans', data.vans);
                 setVans(data.vans);
 
             });
