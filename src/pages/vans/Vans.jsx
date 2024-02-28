@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import getVans from "../../api";
+import { getVans } from "../../api";
 export default function Vans() {
     const [vans, setVans] = React.useState([]);
     const [loading, setLoading] = React.useState(true);

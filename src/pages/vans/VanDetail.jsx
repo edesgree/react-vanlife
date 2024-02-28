@@ -1,19 +1,7 @@
 import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-const fetchVan = async function (id) {
-    try {
-        const response = await fetch(`/api/vans/${id}`);
-        const data = await response.json();
-        console.log('data', data.vans);
-        return data.vans || {};
-    } catch (err) {
-        console.log(err);
-        return { name: 'Van not found' };
-    } finally {
-        console.log('done');
-    }
+import { getVanById } from "../../api";
 
-};
 export default function VanDetail() {
     const params = useParams();
     console.log('useParams', params);
@@ -22,7 +10,7 @@ export default function VanDetail() {
 
     React.useEffect(() => {
         const fetchData = async () => {
-            const data = await fetchVan(params.id);
+            const data = await getVanById(params.id);
             setVanDetail(data);
         };
         fetchData();
